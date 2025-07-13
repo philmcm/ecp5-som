@@ -1,0 +1,8 @@
+*-backups
+*.bak
+*.kicad_prl
+*.lck
+\#auto_saved_files\#
+fp-info-cache
+gerbers/*.zip
+board2pdf.config.ini

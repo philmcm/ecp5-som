@@ -1,0 +1,4 @@
+(sym_lib_table
+  (version 7)
+  (lib (name "ecp5-som")(type "KiCad")(uri "${KIPRJMOD}/ecp5-som.kicad_sym")(options "")(descr ""))
+)
