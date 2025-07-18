@@ -6,7 +6,8 @@ from kisymbol.Sexpr import SexprBuilder
 def generate_rectangle(num_pins, b):
     b.open("rectangle")
     b.write("(start -6.35 -1.27)")
-    b.write("(end 6.35 {2.54 * num_pins}")
+    # note: format(..., '.2f') required because 1.27*66 = 83.82000000000001
+    b.write(f"(end 6.35 {format(2.54 * num_pins, '.2f')}")
     b.open("stroke")
     b.write("(width 0)")
     b.write("(type default)")
@@ -21,7 +22,8 @@ def generate_pins(unit, bank, config, df: pd.DataFrame, b):
     i = 0
     for index, row in df[df["Bank"]==bank].iterrows():
         b.open("pin bidirectional line")
-        b.write(f"(at -8.89 {i * 2.54} 0)")
+	# note: format(..., '.2f') required because 1.27*66 = 83.82000000000001
+        b.write(f"(at -8.89 {format(i * 2.54, '.2f')} 0)")
         b.write("(length 2.54)")
         b.open(f"name \"{row["Function"]}\"")
         b.open("effects")
