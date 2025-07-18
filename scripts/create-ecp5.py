@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-from kisymbol import schematic, util
+from kisymbol import schematic, footprint, util
 
 config = util.load_config('./config.yaml')
 data = util.process_data(config.data_file)
@@ -22,4 +22,5 @@ bga256_df = (
     [['PAD', 'POS', 'Function', 'Dual Function', 'Bank']]
 )
 
-schematic.generate_symbol_library(config, bga256_df)
+#schematic.generate_symbol_library(config, bga256_df)
+footprint.generate_footprint(config, bga256_df)

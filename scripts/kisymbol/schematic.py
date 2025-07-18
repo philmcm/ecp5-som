@@ -17,12 +17,11 @@ def generate_rectangle(num_pins, b):
     b.close()
     b.close()
 
-
 def generate_pins(unit, bank, config, df: pd.DataFrame, b):
     i = 0
     for index, row in df[df["Bank"]==bank].iterrows():
         b.open("pin bidirectional line")
-	# note: format(..., '.2f') required because 1.27*66 = 83.82000000000001
+	    # note: format(..., '.2f') required because 1.27*66 = 83.82000000000001
         b.write(f"(at -8.89 {format(i * 2.54, '.2f')} 0)")
         b.write("(length 2.54)")
         b.open(f"name \"{row["Function"]}\"")
@@ -42,55 +41,16 @@ def generate_pins(unit, bank, config, df: pd.DataFrame, b):
         b.close()
         i += 1
     return i
-#     print(
-# """
-#     		(pin input line
-# 				(at -8.89 5.08 0)
-# 				(length 2.54)
-# 				(name "1A"
-# 					(effects
-# 						(font
-# 							(size 1.27 1.27)
-# 						)
-# 					)
-# 				)
-# 				(number "1"
-# 					(effects
-# 						(font
-# 							(size 1.27 1.27)
-# 						)
-# 					)
-# 				)
-# 			)
-# 			(pin output line
-# 				(at 8.89 -5.08 180)
-# 				(length 2.54)
-# 				(name "5Y"
-# 					(effects
-# 						(font
-# 							(size 1.27 1.27)
-# 						)
-# 					)
-# 				)
-# 				(number "10"
-# 					(effects
-# 						(font
-# 							(size 1.27 1.27)
-# 						)
-# 					)
-# 				)
-# 			)
-# """)
-    
+
 def generate_units(config, df: pd.DataFrame, b):
     for unit, bank in enumerate(df["Bank"].unique(), start=1):
-        b.open(f"symbol \"LFE5U-45F-8BG256C_{unit}_1\"")
+        b.open(f"symbol \"{config.value}_{unit}_1\"")
         num_pins = generate_pins(unit, bank, config, df, b)
         generate_rectangle(num_pins, b)
         b.close()
 
 def generate_symbol(config, df: pd.DataFrame, b):
-    b.open("symbol \"LFE5U-45F-8BG256C\"")
+    b.open(f"symbol \"{config.value}\"")
 
     # reference
     b.open("property \"Reference\" \"U\"")
@@ -103,7 +63,7 @@ def generate_symbol(config, df: pd.DataFrame, b):
     b.close()
 
     # value
-    b.open("property \"Value\" \"LFE5U-45F-8BG256C\"")
+    b.open(f"property \"Value\" \"{config.value}\"")
     b.write("(at 7.62 -16.51 0)")
     b.open("effects")
     b.open("font")
@@ -113,7 +73,7 @@ def generate_symbol(config, df: pd.DataFrame, b):
     b.close()
 
     # footprint
-    b.open("property \"Footprint\" \"ecp5-som:BG256\"")
+    b.open(f"property \"Footprint\" \"{config.footprint}\"")
     b.write("(at 0 -36.83 0)")
     b.write("(show_name)")
     b.open("effects")
@@ -125,7 +85,7 @@ def generate_symbol(config, df: pd.DataFrame, b):
     b.close()
 
     # datasheet
-    b.open("property \"Datasheet\" \"https://www.latticesemi.com/view_document?document_id=50461\"")
+    b.open(f"property \"Datasheet\" \"{config.datasheet}\"")
     b.write("(at 1.27 -29.21 0)")
     b.write("(show_name)")
     b.open("effects")

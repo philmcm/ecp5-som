@@ -1,11 +1,6 @@
-banks:
-- "0"
-- "1"
-- "2"
-- "3"
-- "6"
-- "7"
-- "8"
-- "40"
-- "-"
 data_file: "../data/FPGA-SC-02034-3-0-ECP5U-45-Pinout.csv"
+value: "LFE5U-45F-8BG256C"
+footprint: "ecp5-som:BG256"
+datasheet: "https://www.latticesemi.com/view_document?document_id=50461"
+banks: ["0", "1", "2", "3", "6", "7", "8", "40", "-"]
+row_ids: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'J', 'K', 'L', 'M', 'N', 'P', 'R', 'T']
