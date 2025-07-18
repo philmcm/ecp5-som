@@ -6,3 +6,4 @@
 fp-info-cache
 gerbers/*.zip
 board2pdf.config.ini
+__pycache__

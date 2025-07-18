@@ -8,3 +8,4 @@ banks:
 - "8"
 - "40"
 - "-"
+data_file: "data/FPGA-SC-02034-3-0-ECP5U-45-Pinout.csv"
